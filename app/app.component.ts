@@ -2,28 +2,20 @@
  * Created by agrimasthana on 1/12/16.
  */
 import {Component} from 'angular2/core';
+import {evenComponent} from './odd-even.component';
+import {counterComponent} from './counter.component';
 
 @Component({
-    selector:'counter-app',
+    selector:'Main-app',
     styles:['.styled{' +
     'color:red;' +
         'text-decoration:underline;'+
     '}'],
-    template: '<h2> "Counter APP"</h2><br><button (click)="increment()">+</button>&nbsp;' +
-    '<button (click)="decrement()">-</button><br> <button (click)="reset()">Reset</button><br>{{counterValue}}<p class="styled">Style me for no reason</p>'
+    template: '<h2> "Counter APP"</h2><br>Here is the counter component<br>' +
+    '<counter></counter><br> Here is the odd or even component<br><odd-even></odd-even>',
+    directives:[evenComponent, counterComponent]
 })
 
 export class AppComponent {
-    counterValue = 0;
 
-    increment(){
-        this.counterValue+=1;
-    }
-    decrement(){
-        this.counterValue-=1;
-    }
-
-    reset(){
-        this.counterValue=0;
-    }
 }
