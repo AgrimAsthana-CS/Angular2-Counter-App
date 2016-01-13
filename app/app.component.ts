@@ -10,7 +10,7 @@ import {Component} from 'angular2/core';
         'text-decoration:underline;'+
     '}'],
     template: '<h2> "Counter APP"</h2><br><button (click)="increment()">+</button>&nbsp;' +
-    '<button (click)="decrement()">-</button><br>{{counterValue}}<br><p class="styled">Style me for no reason</p>'
+    '<button (click)="decrement()">-</button><br> <button (click)="reset()">Reset</button><br>{{counterValue}}<p class="styled">Style me for no reason</p>'
 })
 
 export class AppComponent {
@@ -21,5 +21,9 @@ export class AppComponent {
     }
     decrement(){
         this.counterValue-=1;
+    }
+
+    reset(){
+        this.counterValue=0;
     }
 }
