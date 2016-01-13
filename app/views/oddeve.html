@@ -1,0 +1,5 @@
+<!DOCTYPE html>
+<html lang="en">
+<input #box (keyup)="onKey(box.value)">
+<p [hidden]="!status">{{box.value}} is {{status}}</p>
+</html>

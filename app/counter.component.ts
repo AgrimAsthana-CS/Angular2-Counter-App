@@ -1,17 +1,12 @@
 /**
  * Created by agrimasthana on 1/13/16.
  */
-import {Component} from 'angular2/core';
+import {Component,View} from 'angular2/core';
 
-@Component({
-    selector:'counter',
-    styles:['.styled{' +
-    'color:red;' +
-    'text-decoration:underline;'+
-    '}'],
-    template: '<button (click)="increment()">+</button>&nbsp;' +
-    '<button (click)="decrement()">-</button><br> <button (click)="reset()">Reset</button><br>{{counterValue}}<p class="styled">Style me for no reason</p>'
-})
+@Component({selector:'counter'})
+
+@View({templateUrl:'./app/views/counter.html',
+    styleUrls:['./app/styles/style.scss']})
 
 export class counterComponent {
     counterValue = 0;
