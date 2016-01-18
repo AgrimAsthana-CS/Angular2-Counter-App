@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Jasmine Unit Tests</title>
+    <link rel="stylesheet" href="node_modules/jasmine-core/lib/jasmine-core/jasmine.css">
+    <script src="node_modules/jasmine-core/lib/jasmine-core/jasmine.js"></script>
+    <script src="node_modules/jasmine-core/lib/jasmine-core/jasmine-html.js"></script>
+    <script src="node_modules/jasmine-core/lib/jasmine-core/boot.js"></script>
+    <script src="node_modules/systemjs/dist/system.src.js"></script>
+</head>
+<body>
+
+<script>
+System.config({
+    packages: {
+        'tests': {defaultExtension: 'js'},
+        'app':{defaultExtension: 'js'},
+        'node_modules':{defaultExtension:'js'}
+    }
+});
+    System.import('tests/counter.spec')
+            .then(window.onload)
+            .catch(console.error.bind(console));
+</script>
+</body>
+</html>

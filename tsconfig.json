@@ -2,8 +2,7 @@
   "compilerOptions": {
     "module": "system",
     "moduleResolution":"node",
-    "target": "ES5",
-    "outDir":"compiled",
+    "target": "es5",
     "sourceMap": true,
     "emitDecoratorMetadata":true,
     "experimentalDecorators":true,
@@ -11,6 +10,7 @@
     "noImplicitAny": false
   },
   "exclude": [
-    "node_modules"
+    "node_modules",
+    "tests"
   ]
 }
