@@ -1,6 +1,12 @@
 <!DOCTYPE html>
 <html lang="en">
-<h2> "Counter APP"</h2><br>Here is the counter component<br>
-<counter></counter><br> Here is the odd or even component<br>
-<odd-even></odd-even>
+<h2> "Counter APP"</h2>
+<!--<br>Here is the counter component<br>-->
+<!--<counter></counter><br> Here is the odd or even component<br>-->
+<!--<odd-even></odd-even>-->
+<!--<br><br>-->
+    <a [routerLink]="['/Oddeven']">Even</a><br>
+    <a [routerLink]="['/Counter']">Counter</a>
+<br><br>
+<router-outlet></router-outlet>
 </html>

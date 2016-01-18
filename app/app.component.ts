@@ -4,6 +4,13 @@
 import {Component, View} from 'angular2/core';
 import {evenComponent} from './odd-even.component';
 import {counterComponent} from './counter.component';
+import {RouteConfig,ROUTER_DIRECTIVES,RouterLink,RouterOutlet} from 'angular2/router';
+
+@RouteConfig([
+    //{path:'/',component: AppComponent,as:'Home'},
+    {path:'/even',component: evenComponent,as:'Oddeven'},
+    {path:'/counter',component: counterComponent,as:'Counter'}
+])
 
 @Component({
     selector:'Main-app'
@@ -11,7 +18,14 @@ import {counterComponent} from './counter.component';
 
 @View({
     templateUrl:'./app/views/main.html',
-    directives:[counterComponent, evenComponent]
+    directives:[ROUTER_DIRECTIVES,counterComponent, evenComponent]
 })
 
-export class AppComponent {}
+export class AppComponent {
+    //router: Router;
+    //location: Location;
+    //constructor(router: Router,location: Location){
+    //    this.router=router;
+    //    this.location=location;
+    //}
+}

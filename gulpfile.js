@@ -23,7 +23,7 @@ gulp.task('clean',function(done){
 
 gulp.task('ts2js',function(){
    var tsResult = tsProject.src().pipe(ts(tsProject));
-    return tsResult.js.pipe(flatten()).pipe(uglify()).pipe(gulp.dest('compiled'));
+    return tsResult.js.pipe(flatten()).pipe(gulp.dest('compiled'));
 });
 
 gulp.task('transpileVanilla',function(){
@@ -42,22 +42,22 @@ del(['compiled/**','node_modules/**']);
 });
 
 gulp.task('serve',['ts2js'], function () {
-    var http = require('http');
-    var connect = require('connect');
-    var serveStatic = require('serve-static');
-    var open = require('open');
-
-    var port = 9000, app;
-    //browsersync.init({server:{baseDir:"./"}});
+    //var http = require('http');
+    //var connect = require('connect');
+    //var serveStatic = require('serve-static');
+    //var open = require('open');
+    //
+    //var port = 9000, app;
+    browsersync.init({server:{baseDir:"./"}});
     //livereload.listen();
-    //gulp.watch(PATH.src, ['ts2js',['reload']]);
-    //gulp.watch('./**/*.html',['reload']);
-    //gulp.watch('./**/*.sass',['reload']);
+    gulp.watch(PATH.src, ['ts2js',['reload']]);
+    gulp.watch('./**/*.html',['reload']);
+    gulp.watch('./**/*.sass',['reload']);
 
-    app = connect().use(serveStatic(__dirname));
-    http.createServer(app).listen(port, function () {
-        open('http://localhost:' + port);
-    });
+    //app = connect().use(serveStatic(__dirname));
+    //http.createServer(app).listen(port, function () {
+    //    open('http://localhost:' + port);
+    //});
 });
 
 gulp.task('test',function(){

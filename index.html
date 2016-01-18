@@ -3,26 +3,28 @@
 <head>
     <meta charset="UTF-8">
     <title>Angular 2 'Counter APP'</title>
-    <script src="node_modules/angular2/bundles/angular2-polyfills.js"></script>
     <script src="node_modules/systemjs/dist/system.src.js"></script>
-    <script src="node_modules/rxjs/bundles/Rx.js"></script>
-    <script src="node_modules/angular2/bundles/angular2.dev.js"></script>
-
+    <script src="node_modules/angular2/bundles/router.dev.js"></script>
     <script>
-        System.config({
-            packages: {
-                compiled: {
-                    format: 'register',
-                    defaultExtension: 'js'
-                }
-            }
-        });
-        System.import('compiled/boot')
-                .then(null, console.error.bind(console));
+    System.config({
+    packages: {
+    compiled: {
+    format: 'register',
+    defaultExtension: 'js'
+    }
+//        ,
+//    angular2: { defaultExtension: false }
+    }
+    });
+    System.import('compiled/boot')
+    .then(null, console.error.bind(console));
     </script>
+    <script src="node_modules/rxjs/bundles/Rx.js"></script>
+    <script src="node_modules/angular2/bundles/angular2-polyfills.js"></script>
+    <script src="node_modules/angular2/bundles/angular2.dev.js"></script>
 
 </head>
 <body>
-<Main-app>Loading</Main-app>
+<Main-app>Loading..</Main-app>
 </body>
 </html>
