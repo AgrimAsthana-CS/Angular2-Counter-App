@@ -23,7 +23,7 @@ gulp.task('clean',function(done){
 
 gulp.task('ts2js',function(){
    var tsResult = tsProject.src().pipe(ts(tsProject));
-    return tsResult.js.pipe(flatten()).pipe(gulp.dest('compiled'));
+    return tsResult.js.pipe(flatten()).pipe(uglify()).pipe(gulp.dest('compiled'));
 });
 
 gulp.task('transpileVanilla',function(){

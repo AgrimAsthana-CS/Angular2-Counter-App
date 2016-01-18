@@ -22,10 +22,4 @@ import {RouteConfig,ROUTER_DIRECTIVES,RouterLink,RouterOutlet} from 'angular2/ro
 })
 
 export class AppComponent {
-    //router: Router;
-    //location: Location;
-    //constructor(router: Router,location: Location){
-    //    this.router=router;
-    //    this.location=location;
-    //}
 }
