@@ -6,9 +6,10 @@
     "removeComments": true,
     "emitDecoratorMetadata": true,
     "experimentalDecorators": true,
-    "noEmitHelpers": false,
+    "noEmitHelpers": true,
     "sourceMap": true
   },
+  "ignoreDiagnostics":[2304,2300,2374,2375],
   "exclude":[
     "node_modules",
     "app"
