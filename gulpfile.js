@@ -5,14 +5,17 @@ var gulp = require('gulp');
 var ts = require('gulp-typescript');
 var flatten = require('gulp-flatten');
 var uglify = require('gulp-uglify');
+var gulpif=require('gulp-if');
 var browsersync = require('browser-sync').create();
 var del = require('del');
 var Server = require('karma').Server;
-//var reload = browsersync.reload;
+var minimist = require('minimist');
 var PATH = {
     src: '../app/*.ts'
 };
 
+var knownOptions = { string:'env', default:{ env: process.env.NODE_ENV || 'prod'}};
+var options = minimist(process.argv.slice(2),knownOptions);
 var tsTest= ts.createProject('tstestconfig.json');
 
 var tsProject = ts.createProject('tsconfig.json');
@@ -24,7 +27,7 @@ gulp.task('clean',function(done){
 
 gulp.task('ts2js',function(){
    var tsResult = tsProject.src().pipe(ts(tsProject));
-    return tsResult.js.pipe(flatten()).pipe(uglify()).pipe(gulp.dest('compiled'));
+    return tsResult.js.pipe(flatten()).pipe(gulpif(options.env === 'prod',uglify())).pipe(gulp.dest('compiled'));
 });
 
 gulp.task('transpileVanilla',function(){
