@@ -32,6 +32,13 @@ module.exports = function(config){
         //files:['tests/**/*.spec.ts'],
         preprocessors: {'spec-bundle.js':['webpack','sourcemap']},
         webpack:testWebpackConfig,
+        coverageReporter: {
+            dir : 'coverage/',
+            reporters: [
+                { type: 'text-summary' },
+                { type: 'html' }
+            ]
+        },
         webpackServer:{noInfo:true},
         reporters:['progress','coverage'],
         port: 9876,

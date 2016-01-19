@@ -8,6 +8,7 @@
         "noEmitHelpers": false,
         "sourceMap": true
 },
+    "files":["tests/counter.spec.ts","tests/sample.spec.ts"],
     "filesGlob": [
     "./app/**/*.ts",
     "./tests/**/*.ts",

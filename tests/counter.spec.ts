@@ -9,5 +9,23 @@ import {counterComponent} from '../app/counter.component';
             var res = new counterComponent();
             expect(res.counterValue).toEqual(0);
         });
+        it('will increment the value of the counter to increase by 1',() =>{
+            var res = new counterComponent();
+            res.increment();
+            expect(res.counterValue).toEqual(1);
+        });
+
+        it('will decrement the value of the counter to increase by 1',() =>{
+            var res = new counterComponent();
+            res.decrement();
+            expect(res.counterValue).toEqual(-1);
+        });
+
+        it('will reset the value of the counter',() =>{
+            var res = new counterComponent();
+            res.counterValue=42;
+            res.reset();
+            expect(res.counterValue).toEqual(0);
+        });
 
     });

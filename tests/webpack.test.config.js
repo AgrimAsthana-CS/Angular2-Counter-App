@@ -40,7 +40,16 @@ module.exports={
             { test: /\.html$/, loader: 'raw-loader' },
             { test: /\.css$/,  loader: 'raw-loader' }
         ],
-
+        postLoaders: [
+            {
+                test: /\.(js|ts)$/,
+                loader: 'istanbul-instrumenter-loader',
+                exclude: [
+                    /\.e2e\.ts$/,
+                    /node_modules/
+                ]
+            }
+        ],
         noParse:[/zone\.js\/dist\/.+/, /angular2\/bundles\/.+/]
             },
     stats:{colors:true, reasons:true},

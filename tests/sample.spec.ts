@@ -3,5 +3,5 @@
  */
 describe('Sample Test',() => {
    it('true is true',() => expect(true).toEqual(true));
-   it('true is undefined',() => expect(true).toBe(undefined));
+   it('true is undefined',() => expect(false).toBe(false));
 });
