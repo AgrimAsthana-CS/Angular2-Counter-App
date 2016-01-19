@@ -7,6 +7,7 @@ var flatten = require('gulp-flatten');
 var uglify = require('gulp-uglify');
 var browsersync = require('browser-sync').create();
 var del = require('del');
+var Server = require('karma').Server;
 //var reload = browsersync.reload;
 var PATH = {
     src: '../app/*.ts'
@@ -60,9 +61,11 @@ gulp.task('serve',['ts2js'], function () {
     //});
 });
 
-gulp.task('test',function(){
+gulp.task('test',function(done){
     var tsResult = tsTest.src().pipe(ts(tsTest));
-    return tsResult.js.pipe(flatten()).pipe(gulp.dest('./tests/'));
+    tsResult.js.pipe(flatten()).pipe(gulp.dest('./tests/'));
+    new Server({configFile: __dirname +'/karma.conf.js'},
+    done).start();
 });
 
 gulp.task('default',['serve']);
