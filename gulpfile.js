@@ -36,7 +36,7 @@ gulp.task('transpileVanilla',function(){
     return tsResult.js.pipe(gulp.dest('./'));
 });
 
-gulp.task('reload',function(){
+gulp.task('reload',['ts2js'],function(){
    browsersync.reload();
 });
 
@@ -46,21 +46,13 @@ del(['compiled/**','node_modules/**']);
     'compiled and node_nodules');
 });
 
+
 gulp.task('serve',['ts2js'], function () {
-    //var http = require('http');
-    //var connect = require('connect');
-    //var serveStatic = require('serve-static');
-    //var open = require('open');
-    //
     browsersync.init({server:{baseDir:"./"}});
-    gulp.watch('./app/*.ts', ['ts2js','reload']);
+    gulp.watch('./app/*.ts',['reload']);
     gulp.watch('./**/*.html',['reload']);
     gulp.watch('./**/*.sass',['reload']);
 
-    //app = connect().use(serveStatic(__dirname));
-    //http.createServer(app).listen(port, function () {
-    //    open('http://localhost:' + port);
-    //});
 });
 
 gulp.task('test',function(done){

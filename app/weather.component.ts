@@ -29,7 +29,7 @@ export class weatherComponent{
                     err => console.log('Something wen wrong'+err),
                     () => console.log('success')
                 );
-            if(this.current == 10){
+            if(this.current === 10){
                 this.current='invalid city';
             }
         }
