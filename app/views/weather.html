@@ -1,0 +1,5 @@
+    <h2>Weather</h2>
+    <h4>Enter City</h4><br>
+    <input #city><br>
+    <h3>The current temperature at {{city.value}} is {{current}}˚F</h3><br>
+    <button (click)="getWeatherInfo(city.value)">Get Weather info!</button>

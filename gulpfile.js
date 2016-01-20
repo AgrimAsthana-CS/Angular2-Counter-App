@@ -8,6 +8,7 @@ var uglify = require('gulp-uglify');
 var gulpif=require('gulp-if');
 var browsersync = require('browser-sync').create();
 var del = require('del');
+var sourcemaps = require('gulp-sourcemaps');
 var Server = require('karma').Server;
 var minimist = require('minimist');
 var PATH = {
@@ -27,7 +28,7 @@ gulp.task('clean',function(done){
 
 gulp.task('ts2js',function(){
    var tsResult = tsProject.src().pipe(ts(tsProject));
-    return tsResult.js.pipe(flatten()).pipe(gulpif(options.env === 'prod',uglify())).pipe(gulp.dest('compiled'));
+    return tsResult.js.pipe(sourcemaps.init()).pipe(flatten()).pipe(gulpif(options.env === 'prod',uglify())).pipe(sourcemaps.write('./')).pipe(gulp.dest('compiled'));
 });
 
 gulp.task('transpileVanilla',function(){
@@ -51,10 +52,8 @@ gulp.task('serve',['ts2js'], function () {
     //var serveStatic = require('serve-static');
     //var open = require('open');
     //
-    //var port = 9000, app;
     browsersync.init({server:{baseDir:"./"}});
-    //livereload.listen();
-    gulp.watch(PATH.src, ['ts2js',['reload']]);
+    gulp.watch('./app/*.ts', ['ts2js','reload']);
     gulp.watch('./**/*.html',['reload']);
     gulp.watch('./**/*.sass',['reload']);
 
