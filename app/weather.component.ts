@@ -19,14 +19,18 @@ import {HTTP_PROVIDERS} from "angular2/http";
 
 export class weatherComponent{
     current=null;
-    constructor(public http: Http) {
+     private http;
+    constructor(http: Http) {
+        this.http =  http;
     }
         getWeatherInfo(value)
         {
             this.http.get('http://api.openweathermap.org/data/2.5/weather?q='+value+'&appid=2de143494c0b295cca9337e1e96b00e0')
                 .subscribe(
-                    data => this.current= (data.json().main.temp * (9/5) - 459.67).toFixed(),
-                    err => console.log('Something wen wrong'+err),
+                    (data) => {
+                        this.current = (data.json().main.temp * (9 / 5) - 459.67).toFixed();
+                    },
+                    err => console.log('Something went wrong'+err),
                     () => console.log('success')
                 );
             if(this.current === 10){

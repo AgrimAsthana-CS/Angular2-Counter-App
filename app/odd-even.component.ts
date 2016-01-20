@@ -12,9 +12,10 @@ import {Component, View} from 'angular2/core';
 })
 export class evenComponent {
     status="";
+    box="some other string";
     onKey(value){
-        if(value % 2 ==0) {this.status="even number";}
-        //if(typeof value=== "string" || value instanceof String){this.status="invalid"}
+        console.log(this.box);
+        if(value % 2 ==0) {this.status="even";}
         else {this.status="odd";}
     }
 }

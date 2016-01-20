@@ -15,38 +15,34 @@ var PATH = {
     src: '../app/*.ts'
 };
 
+//we specify the known command line arguments that we are aware of
 var knownOptions = { string:'env', default:{ env: process.env.NODE_ENV || 'prod'}};
-var options = minimist(process.argv.slice(2),knownOptions);
-var tsTest= ts.createProject('tstestconfig.json');
 
+//Getting the options from the command line
+var options = minimist(process.argv.slice(2),knownOptions);
+
+//We load the configuration for the Typescript compiler
 var tsProject = ts.createProject('tsconfig.json');
 
+//the clean task is to clean out the folder that is served on the website.
 gulp.task('clean',function(done){
    var del = require('del');
     del(['compiled'],done);
 });
 
+//the ts2js task transpiles code from typescript to browser friendly javascript
 gulp.task('ts2js',function(){
    var tsResult = tsProject.src().pipe(ts(tsProject));
     return tsResult.js.pipe(sourcemaps.init()).pipe(flatten()).pipe(gulpif(options.env === 'prod',uglify())).pipe(sourcemaps.write('./')).pipe(gulp.dest('compiled'));
 });
 
-gulp.task('transpileVanilla',function(){
-    var tsResult = tsProject.src().pipe(ts(tsProject));
-    return tsResult.js.pipe(gulp.dest('./'));
-});
-
+// retranspiles the typescript and then reloads the page.
 gulp.task('reload',['ts2js'],function(){
    browsersync.reload();
 });
 
-gulp.task('clean',function(){
-del(['compiled/**','node_modules/**']);
-    console.log('Delete everything from ' +
-    'compiled and node_nodules');
-});
 
-
+//the serve task serves the app using browsersync and the watches for changes to reload the page.
 gulp.task('serve',['ts2js'], function () {
     browsersync.init({server:{baseDir:"./"}});
     gulp.watch('./app/*.ts',['reload']);
@@ -55,11 +51,5 @@ gulp.task('serve',['ts2js'], function () {
 
 });
 
-gulp.task('test',function(done){
-    var tsResult = tsTest.src().pipe(ts(tsTest));
-    tsResult.js.pipe(flatten()).pipe(gulp.dest('./tests/'));
-    new Server({configFile: __dirname +'/karma.conf.js'},
-    done).start();
-});
-
+//the default task of gulp is to serve the page.
 gulp.task('default',['serve']);

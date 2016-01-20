@@ -47,13 +47,5 @@ module.exports = function(config){
         autoWatch: false,
         browsers:['PhantomJS'],
         singleRun:true
-        //,
-        //plugins:[
-        //    'karma-jasmine',
-        //    'karma-webpack',
-        //    'karma-coverage',
-        //    'karma-phantomjs-launcher',
-        //    'karma-sourcemap-loader'
-        //]
     });
 };
